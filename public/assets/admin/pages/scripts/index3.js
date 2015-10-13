@@ -16,6 +16,7 @@ var Index = function() {
             Index.initCharts();
             Index.initMiniCharts();
             Index.initJQVMAP();
+            Index.initControls();
         },
 
         initJQVMAP: function() {
@@ -121,7 +122,64 @@ var Index = function() {
                     resize: true
                 });
 
+                dashboardMainChart = Morris.Area({
+                    element: 'week_sales_statistics',
+                    padding: 0,
+                    behaveLikeLine: false,
+                    gridEnabled: false,
+                    gridLineColor: false,
+                    axes: false,
+                    fillOpacity: 1,
+                    data: $('#week_sales_statistics').data('orders'),
+                    lineColors: ['#399a8c', '#92e9dc'],
+                    xkey: 'period',
+                    ykeys: ['sales', 'profit'],
+                    labels: ['Sales', 'Profit'],
+                    pointSize: 0,
+                    lineWidth: 0,
+                    hideHover: 'auto',
+                    resize: true
+                });
+
+                dashboardMainChart = Morris.Area({
+                    element: 'month_sales_statistics',
+                    padding: 0,
+                    behaveLikeLine: false,
+                    gridEnabled: false,
+                    gridLineColor: false,
+                    axes: false,
+                    fillOpacity: 1,
+                    data: $('#month_sales_statistics').data('orders'),
+                    lineColors: ['#399a8c', '#92e9dc'],
+                    xkey: 'period',
+                    ykeys: ['sales', 'profit'],
+                    labels: ['Sales', 'Profit'],
+                    pointSize: 0,
+                    lineWidth: 0,
+                    hideHover: 'auto',
+                    resize: true
+                });
+                this.hideCharts();
+                this.showChart('sales_statistics')
             }
+        },
+
+        initControls: function() {
+            console.log('inited');
+            var that = this;
+            $(document).on('click', '#period-controls label', function(evt) {
+                that.hideCharts();
+                var chartToShowId = $(evt.target).attr('data-id');
+                that.showChart(chartToShowId);
+            });
+        },
+
+        showChart: function(chartToShowId) {
+            $("#"+chartToShowId).removeClass('hidden');
+        },
+
+        hideCharts: function() {
+            $('#sales_statistics,  #week_sales_statistics, #month_sales_statistics').addClass('hidden');
         },
 
         redrawCharts: function() {

@@ -8,13 +8,13 @@
 								<span class="caption-helper hide">weekly stats...</span>
 							</div>
 							<div class="actions">
-								<div class="btn-group btn-group-devided" data-toggle="buttons">
-									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
-									<input type="radio" name="options" class="toggle" id="option1">Today</label>
-									<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">Week</label>
-									<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">Month</label>
+								<div id="period-controls" class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active" data-id="sales_statistics">
+									<input type="radio" name="options" class="toggle"  id="option1">Today</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm" data-id="week_sales_statistics">
+									<input type="radio" name="options" class="toggle" >Week</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm" data-id="month_sales_statistics">
+									<input type="radio" name="options" class="toggle" >Month</label>
 								</div>
 							</div>
 						</div>
@@ -94,6 +94,8 @@
 								</li>
 							</ul>
 							<%= content_tag :div, "", id: "sales_statistics", data: {orders: balance_winning }, class: "portlet-body-morris-fit morris-chart", style: "height: 272px" %>
+                          <%= content_tag :div, "", id: "week_sales_statistics", data: {orders: balance_winning }, class: "portlet-body-morris-fit morris-chart", style: "height: 272px" %>
+                          <%= content_tag :div, "", id: "month_sales_statistics", data: {orders: balance_winninggit  }, class: "portlet-body-morris-fit morris-chart", style: "height: 272px" %>
 							</div>
 						</div>
 					</div>
