@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Trans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stake</th>
+      <th>Winnings</th>
+      <th>Total odds</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tran.each do |tran| %>
+      <tr>
+        <td><%= tran.stake %></td>
+        <td><%= tran.winnings %></td>
+        <td><%= tran.total_odds %></td>
+        <td><%= tran.status %></td>
+        <td><%= link_to 'Show', tran %></td>
+        <td><%= link_to 'Edit', edit_tran_path(tran) %></td>
+        <td><%= link_to 'Destroy', tran, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tran', new_tran_path %>
